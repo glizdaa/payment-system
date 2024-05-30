@@ -1,7 +1,7 @@
 angular.module('paymentApp', ['pascalprecht.translate'])
 .config(function($translateProvider, $translateSanitizationProvider) {
     $translateProvider.useStaticFilesLoader({
-        prefix: 'public/lang/',
+        prefix: '../lang/',
         suffix: '.json'
     });
 
