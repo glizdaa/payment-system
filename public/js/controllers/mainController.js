@@ -6,37 +6,59 @@ angular.module('paymentApp')
     vm.theme = 'light-mode'; // Ustawienie klasy dla jasnego motywu
 
     function loadCurrentBills() {
-        vm.currentBills = [
-            { title: $translate.instant('electricBill'), amount: 120 },
-            { title: $translate.instant('internetBill'), amount: 60 }
-        ];
-    }
-
-    function initialize() {
-        // Sprawdzenie aktualnego języka
-        var currentLanguage = $translate.use() || $translate.preferredLanguage();
-        $translate.use(currentLanguage).then(function() {
-            // Ładowanie rachunków zgodnie z aktualnym językiem
-            loadCurrentBills();
+        PaymentService.getBills().then(function(response) {
+            if (Array.isArray(response.data)) {
+                vm.currentBills = response.data;
+            } else {
+                console.error('Unexpected data format for bills:', response.data);
+            }
+        }).catch(function(error) {
+            console.error('Error loading current bills:', error);
         });
     }
 
-    // Inicjalizacja rachunków przy starcie
-    initialize();
+    loadCurrentBills();
 
-    vm.paymentHistory = [
-        { date: '2024-01-01', amount: 120 },
-        { date: '2023-12-01', amount: 60 }
-    ];
+    vm.paymentHistory = [];
+
+    function loadPaymentHistory() {
+        PaymentService.getPayments().then(function(response) {
+            if (Array.isArray(response.data)) {
+                vm.paymentHistory = response.data.map(function(payment) {
+                    payment.date = new Date(payment.payment_date);
+                    return payment;
+                });
+            } else {
+                console.error('Unexpected data format for payments:', response.data);
+            }
+        }).catch(function(error) {
+            console.error('Error loading payment history:', error);
+        });
+    }
+
+    loadPaymentHistory();
 
     vm.payment = {
-        amount: 0
+        amount: 0,
+        bill_id: null
     };
 
     vm.makePayment = function() {
-        PaymentService.makePayment(vm.payment.amount).then(function(response) {
+        if (!vm.payment.bill_id) {
+            alert($translate.instant('Please select a bill to pay'));
+            return;
+        }
+
+        PaymentService.makePayment(vm.payment.amount, vm.payment.bill_id).then(function(response) {
             alert($translate.instant('paymentSuccess'));
-            // Aktualizacja stanu rachunków i historii płatności
+            loadCurrentBills();
+            loadPaymentHistory();
+        }).catch(function(error) {
+            if (error.status === 400) {
+                alert($translate.instant('Invalid payment amount. Please enter a valid amount.'));
+            } else {
+                console.error('Error making payment:', error);
+            }
         });
     };
 
@@ -44,26 +66,22 @@ angular.module('paymentApp')
         $translate.use(langKey).then(function() {
             return $translate.refresh();
         }).then(function() {
-            // Aktualizacja tłumaczeń dla dynamicznych treści po zmianie języka
             loadCurrentBills();
         });
     };
 
-    // Funkcja przełączająca motyw
     vm.toggleTheme = function() {
         if (vm.isLightTheme) {
-            document.body.classList.add('dark-mode');
+          document.body.classList.add('dark-mode');
         } else {
-            document.body.classList.remove('dark-mode');
+          document.body.classList.remove('dark-mode');
         }
     };
 
-    // Nasłuchiwacz zmian stanu checkboxa
     $scope.$watch('mainCtrl.isLightTheme', function(newVal) {
         vm.toggleTheme();
     });
 
-    // Zarządzanie widocznością sekcji
     vm.visibleSection = 'current'; // Domyślnie widoczna sekcja
 
     vm.showSection = function(section) {

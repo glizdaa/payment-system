@@ -51,30 +51,36 @@
                 </ul>
             </div>
         </nav>
-        <section id="current" class="mt-5" ng-show="mainCtrl.visibleSection === 'current'">
+        <section id="current" class="mt-5 pt-4" ng-show="mainCtrl.visibleSection === 'current'">
             <h1>{{ 'currentBillsTitle' | translate }}</h1>
-            <div ng-repeat="bill in mainCtrl.currentBills" class="card mt-2">
+            <div ng-repeat="bill in mainCtrl.currentBills track by bill.id" class="card mt-2">
                 <div class="card-body">
                     <h2 class="card-title">{{ bill.title }}</h2>
                     <p class="card-text">{{ bill.amount }} USD</p>
                 </div>
             </div>
         </section>
-        <section id="history" class="mt-5" ng-show="mainCtrl.visibleSection === 'history'">
+        <section id="history" class="mt-5 pt-4" ng-show="mainCtrl.visibleSection === 'history'">
             <h1>{{ 'paymentHistoryTitle' | translate }}</h1>
-            <div ng-repeat="payment in mainCtrl.paymentHistory" class="card mt-2">
+            <div ng-repeat="payment in mainCtrl.paymentHistory track by payment.id" class="card mt-2">
                 <div class="card-body">
-                    <h2 class="card-title">{{ payment.date }}</h2>
+                    <h2 class="card-title">{{ payment.date | date:'medium' }}</h2>
                     <p class="card-text">{{ payment.amount }} USD</p>
                 </div>
             </div>
         </section>
-        <section id="pay" class="mt-5" ng-show="mainCtrl.visibleSection === 'pay'">
+        <section id="pay" class="mt-5 pt-4" ng-show="mainCtrl.visibleSection === 'pay'">
             <h1>{{ 'makePaymentTitle' | translate }}</h1>
             <form ng-submit="mainCtrl.makePayment()">
                 <div class="form-group">
+                    <label>{{ 'selectBill' | translate }}</label>
+                    <select ng-model="mainCtrl.payment.bill_id" class="form-control" required>
+                        <option ng-repeat="bill in mainCtrl.currentBills track by bill.id" value="{{bill.id}}">{{bill.title}} - {{bill.amount}} USD</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label>{{ 'paymentAmount' | translate }}</label>
-                    <input type="number" ng-model="mainCtrl.payment.amount" class="form-control">
+                    <input type="number" ng-model="mainCtrl.payment.amount" class="form-control" required>
                 </div>
                 <button type="submit" class="btn btn-primary">{{ 'pay' | translate }}</button>
             </form>
