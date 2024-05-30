@@ -1,0 +1,36 @@
+<data name="currentBills" xml:space="preserve">
+  <value>Current Bills</value>
+</data>
+<data name="paymentHistory" xml:space="preserve">
+  <value>Payment History</value>
+</data>
+<data name="makePayment" xml:space="preserve">
+  <value>Make a Payment</value>
+</data>
+<data name="currentBillsTitle" xml:space="preserve">
+  <value>Your Current Bills</value>
+</data>
+<data name="paymentHistoryTitle" xml:space="preserve">
+  <value>Your Payment History</value>
+</data>
+<data name="makePaymentTitle" xml:space="preserve">
+  <value>Make a Payment</value>
+</data>
+<data name="paymentAmount" xml:space="preserve">
+  <value>Payment Amount</value>
+</data>
+<data name="pay" xml:space="preserve">
+  <value>Pay</value>
+</data>
+<data name="currency" xml:space="preserve">
+  <value>USD</value>
+</data>
+<data name="footerText" xml:space="preserve">
+  <value>All rights reserved.</value>
+</data>
+<data name="systemName" xml:space="preserve">
+  <value>Payment System</value>
+</data>
+<data name="paymentSuccess" xml:space="preserve">
+  <value>Payment successful!</value>
+</data>

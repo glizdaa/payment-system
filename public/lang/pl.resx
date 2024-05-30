@@ -1,0 +1,36 @@
+<data name="currentBills" xml:space="preserve">
+  <value>Bieżące Rachunki</value>
+</data>
+<data name="paymentHistory" xml:space="preserve">
+  <value>Historia Płatności</value>
+</data>
+<data name="makePayment" xml:space="preserve">
+  <value>Dokonaj Płatności</value>
+</data>
+<data name="currentBillsTitle" xml:space="preserve">
+  <value>Twoje Bieżące Rachunki</value>
+</data>
+<data name="paymentHistoryTitle" xml:space="preserve">
+  <value>Twoja Historia Płatności</value>
+</data>
+<data name="makePaymentTitle" xml:space="preserve">
+  <value>Dokonaj Płatności</value>
+</data>
+<data name="paymentAmount" xml:space="preserve">
+  <value>Kwota Płatności</value>
+</data>
+<data name="pay" xml:space="preserve">
+  <value>Zapłać</value>
+</data>
+<data name="currency" xml:space="preserve">
+  <value>PLN</value>
+</data>
+<data name="footerText" xml:space="preserve">
+  <value>Wszelkie prawa zastrzeżone.</value>
+</data>
+<data name="systemName" xml:space="preserve">
+  <value>System Płatności</value>
+</data>
+<data name="paymentSuccess" xml:space="preserve">
+  <value>Płatność zakończona sukcesem!</value>
+</data>

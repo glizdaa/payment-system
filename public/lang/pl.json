@@ -1,0 +1,17 @@
+{
+    "currentBills": "Bieżące Rachunki",
+    "paymentHistory": "Historia Płatności",
+    "makePayment": "Dokonaj Płatności",
+    "currentBillsTitle": "Twoje Bieżące Rachunki",
+    "paymentHistoryTitle": "Twoja Historia Płatności",
+    "makePaymentTitle": "Dokonaj Płatności",
+    "paymentAmount": "Kwota Płatności",
+    "pay": "Zapłać",
+    "currency": "PLN",
+    "footerText": "Wszelkie prawa zastrzeżone.",
+    "systemName": "System Płatności",
+    "paymentSuccess": "Płatność zakończona sukcesem!",
+    "electricBill": "Rachunek za prąd",
+    "internetBill": "Rachunek za internet",
+    "cookieConsentText": "Ta strona używa plików cookie, aby zapewnić najlepsze wrażenia na naszej stronie."
+}

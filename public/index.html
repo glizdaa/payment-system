@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment System</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-translate/dist/angular-translate.min.js"></script>
+    <script src="node_modules/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="services/paymentService.js"></script>
+    <script src="controllers/mainController.js"></script>
+</head>
+<body ng-app="paymentApp" ng-class="mainCtrl.theme">
+    <div id="cookie-banner" class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ 'cookieConsentText' | translate }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div ng-controller="MainController as mainCtrl" class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <a class="navbar-brand" href="#">Payment System</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="" ng-click="mainCtrl.showSection('current')">{{ 'currentBills' | translate }}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="" ng-click="mainCtrl.showSection('history')">{{ 'paymentHistory' | translate }}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="" ng-click="mainCtrl.showSection('pay')">{{ 'makePayment' | translate }}</a></li>
+                </ul>
+                <ul class="navbar-nav flag-container">
+                    <li class="nav-item">
+                        <img src="images/pl_flag.png" alt="Polski" class="flag pl_flag nav-link" ng-click="mainCtrl.changeLanguage('pl')">
+                    </li>
+                    <li class="nav-item">
+                        <img src="images/uk_flag.png" alt="English" class="flag uk_flag nav-link" ng-click="mainCtrl.changeLanguage('en')">
+                    </li>
+                    <li class="nav-item">
+                        <label class="switch nav-link">
+                            <input type="checkbox" ng-model="mainCtrl.isLightTheme">
+                            <span class="slider">
+                                <span class="sun"></span>
+                                <span class="moon"></span>
+                            </span>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <section id="current" class="mt-5" ng-show="mainCtrl.visibleSection === 'current'">
+            <h1>{{ 'currentBillsTitle' | translate }}</h1>
+            <div ng-repeat="bill in mainCtrl.currentBills" class="card mt-2">
+                <div class="card-body">
+                    <h2 class="card-title">{{ bill.title }}</h2>
+                    <p class="card-text">{{ bill.amount }} USD</p>
+                </div>
+            </div>
+        </section>
+        <section id="history" class="mt-5" ng-show="mainCtrl.visibleSection === 'history'">
+            <h1>{{ 'paymentHistoryTitle' | translate }}</h1>
+            <div ng-repeat="payment in mainCtrl.paymentHistory" class="card mt-2">
+                <div class="card-body">
+                    <h2 class="card-title">{{ payment.date }}</h2>
+                    <p class="card-text">{{ payment.amount }} USD</p>
+                </div>
+            </div>
+        </section>
+        <section id="pay" class="mt-5" ng-show="mainCtrl.visibleSection === 'pay'">
+            <h1>{{ 'makePaymentTitle' | translate }}</h1>
+            <form ng-submit="mainCtrl.makePayment()">
+                <div class="form-group">
+                    <label>{{ 'paymentAmount' | translate }}</label>
+                    <input type="number" ng-model="mainCtrl.payment.amount" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">{{ 'pay' | translate }}</button>
+            </form>
+        </section>
+    </div>
+    <footer class="footer">
+        <p>&copy; 2024 {{ 'systemName' | translate }}. {{ 'footerText' | translate }}</p>
+    </footer>
+</body>
+</html>

@@ -2,15 +2,19 @@
   "name": "payment-system",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "angular": "^1.8.3",
-    "angular-translate": "^2.19.1"
+    "angular": "^1.8.2",
+    "angular-translate": "^2.18.4",
+    "angular-translate-loader-static-files": "^2.19.1",
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2",
+    "dotenv": "^10.0.0"
   }
 }

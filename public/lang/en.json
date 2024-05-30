@@ -1,0 +1,17 @@
+{
+    "currentBills": "Current Bills",
+    "paymentHistory": "Payment History",
+    "makePayment": "Make a Payment",
+    "currentBillsTitle": "Your Current Bills",
+    "paymentHistoryTitle": "Your Payment History",
+    "makePaymentTitle": "Make a Payment",
+    "paymentAmount": "Payment Amount",
+    "pay": "Pay",
+    "currency": "USD",
+    "footerText": "All rights reserved.",
+    "systemName": "Payment System",
+    "paymentSuccess": "Payment successful!",
+    "electricBill": "Electric Bill",
+    "internetBill": "Internet Bill",
+    "cookieConsentText": "This website uses cookies to ensure you get the best experience on our website."
+}
