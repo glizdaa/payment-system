@@ -34,6 +34,11 @@ app.post('/api/payments', (req, res) => {
   res.json({ success: true, message: 'Payment processed successfully', amount });
 });
 
+// Obsługa wszystkich pozostałych tras (dla AngularJS)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
+});
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
