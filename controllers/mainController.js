@@ -57,12 +57,12 @@ angular.module('paymentApp')
             document.body.classList.remove('dark-mode');
         }
     };
-      
+
     // Nasłuchiwacz zmian stanu checkboxa
     $scope.$watch('mainCtrl.isLightTheme', function(newVal) {
         vm.toggleTheme();
     });
-    
+
     // Zarządzanie widocznością sekcji
     vm.visibleSection = 'current'; // Domyślnie widoczna sekcja
 
