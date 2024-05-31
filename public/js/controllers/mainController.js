@@ -1,5 +1,5 @@
 angular.module('paymentApp')
-.controller('MainController', function($translate, PaymentService, $scope) {
+.controller('MainController', function($translate, PaymentService, PaymentModel, $scope) {
     var vm = this;
 
     vm.isLightTheme = true; // Domyślnie jasny motyw
@@ -49,18 +49,22 @@ angular.module('paymentApp')
     };
 
     vm.makePayment = function() {
-        if (!vm.payment.bill_id) {
+        if (!PaymentModel.validateBillSelection(vm.payment.bill_id)) {
             alert($translate.instant('Please select a bill to pay'));
+            return;
+        }
+        if (!PaymentModel.validatePaymentAmount(vm.payment.amount)) {
+            alert($translate.instant('Invalid payment amount. Please enter a valid amount.'));
             return;
         }
 
         PaymentService.makePayment(vm.payment.amount, vm.payment.bill_id).then(function(response) {
-            alert($translate.instant('paymentSuccess'));
+            alert($translate.instant(response.data.message));
             loadCurrentBills();
             loadPaymentHistory();
         }).catch(function(error) {
             if (error.status === 400) {
-                alert($translate.instant('Invalid payment amount. Please enter a valid amount.'));
+                alert($translate.instant(error.data.message));
             } else {
                 console.error('Error making payment:', error);
             }
