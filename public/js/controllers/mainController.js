@@ -26,7 +26,7 @@ angular.module('paymentApp')
 
     vm.paymentHistory = [];
     vm.currentPage = 1;
-    vm.itemsPerPage = 6;
+    vm.itemsPerPage = 5;
 
     vm.setPage = function(page) {
         if (page > 0 && page <= vm.totalPages) {
