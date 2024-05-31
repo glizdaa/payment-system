@@ -58,6 +58,7 @@
                 <div class="card-body">
                     <h2 class="card-title">{{ bill.title }}</h2>
                     <p class="card-text">{{ bill.amount }} USD</p>
+                    <button class="btn btn-primary" ng-click="mainCtrl.selectBillForPayment(bill)">{{ 'makePayment' | translate }}</button>
                 </div>
             </div>
         </section>
@@ -88,8 +89,7 @@
             <form ng-submit="mainCtrl.makePayment()">
                 <div class="form-group">
                     <label for="billList">{{ 'selectBill' | translate }}</label>
-                    <select id="billList" name="billList" ng-model="mainCtrl.payment.bill_id" class="form-control" required>
-                        <option ng-repeat="bill in mainCtrl.currentBills track by bill.id" value="{{bill.id}}">{{bill.title}} - {{bill.amount}} USD</option>
+                    <select id="billList" name="billList" ng-model="mainCtrl.payment.bill_id" ng-options="bill.id as bill.title + ' - ' + bill.amount + ' USD' for bill in mainCtrl.currentBills" class="form-control" required>
                     </select>
                 </div>
                 <div class="form-group">

@@ -33,12 +33,12 @@ angular.module('paymentApp')
             vm.currentPage = page;
         }
     };
-    
+
     vm.paginatedPaymentHistory = function() {
         var start = (vm.currentPage - 1) * vm.itemsPerPage;
         var end = start + vm.itemsPerPage;
         return vm.paymentHistory.slice(start, end);
-    };    
+    };
 
     function loadPaymentHistory() {
         PaymentService.getPayments().then(function(response) {
@@ -54,7 +54,7 @@ angular.module('paymentApp')
         }).catch(function(error) {
             console.error('Error loading payment history:', error);
         });
-    }    
+    }
 
     loadPaymentHistory();
 
@@ -86,6 +86,14 @@ angular.module('paymentApp')
         });
     };
 
+    vm.selectBillForPayment = function(bill) {
+        vm.payment.bill_id = bill.id;
+        vm.payment.amount = parseFloat(bill.amount); // Ensure amount is a number
+        console.log("Selected Bill ID:", vm.payment.bill_id);
+        console.log("Selected Bill Amount:", vm.payment.amount);
+        vm.showSection('pay');
+    };
+
     vm.changeLanguage = function(langKey) {
         $translate.use(langKey).then(function() {
             return $translate.refresh();
@@ -96,9 +104,9 @@ angular.module('paymentApp')
 
     vm.toggleTheme = function() {
         if (vm.isLightTheme) {
-          document.body.classList.add('dark-mode');
+            document.body.classList.add('dark-mode');
         } else {
-          document.body.classList.remove('dark-mode');
+            document.body.classList.remove('dark-mode');
         }
     };
 
