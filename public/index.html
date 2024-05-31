@@ -42,7 +42,7 @@
                     </li>
                     <li class="nav-item">
                         <label class="switch nav-link">
-                            <input type="checkbox" ng-model="mainCtrl.isLightTheme">
+                            <input type="checkbox" id="themeToggle" name="themeToggle" ng-model="mainCtrl.isLightTheme">
                             <span class="slider">
                                 <span class="sun"></span>
                                 <span class="moon"></span>
@@ -74,14 +74,14 @@
             <h1>{{ 'makePaymentTitle' | translate }}</h1>
             <form ng-submit="mainCtrl.makePayment()">
                 <div class="form-group">
-                    <label>{{ 'selectBill' | translate }}</label>
-                    <select ng-model="mainCtrl.payment.bill_id" class="form-control" required>
+                    <label for="billList">{{ 'selectBill' | translate }}</label>
+                    <select id="billList" name="billList" ng-model="mainCtrl.payment.bill_id" class="form-control" required>
                         <option ng-repeat="bill in mainCtrl.currentBills track by bill.id" value="{{bill.id}}">{{bill.title}} - {{bill.amount}} USD</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>{{ 'paymentAmount' | translate }}</label>
-                    <input type="number" ng-model="mainCtrl.payment.amount" class="form-control" required>
+                    <label for="paymentAmount">{{ 'paymentAmount' | translate }}</label>
+                    <input type="number" id="paymentAmount" name="paymentAmount" ng-model="mainCtrl.payment.amount" class="form-control" required>
                 </div>
                 <button type="submit" class="btn btn-primary">{{ 'pay' | translate }}</button>
             </form>
