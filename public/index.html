@@ -63,13 +63,26 @@
         </section>
         <section id="history" class="mt-5 pt-4" ng-show="mainCtrl.visibleSection === 'history'">
             <h1>{{ 'paymentHistoryTitle' | translate }}</h1>
-            <div ng-repeat="payment in mainCtrl.paymentHistory track by payment.id" class="card mt-2">
+            <div ng-repeat="payment in mainCtrl.paginatedPaymentHistory() track by payment.id" class="card mt-2">
                 <div class="card-body">
                     <h2 class="card-title">{{ payment.date | date:'medium' }}</h2>
                     <p class="card-text">{{ payment.amount }} USD</p>
                 </div>
             </div>
-        </section>
+            <div class="pagination-container" aria-label="Page navigation">
+                <ul class="pagination justify-content-center mt-4">
+                    <li class="page-item" ng-class="{disabled: mainCtrl.currentPage === 1}">
+                        <a class="page-link" href="#" ng-click="mainCtrl.setPage(mainCtrl.currentPage - 1)">Previous</a>
+                    </li>
+                    <li class="page-item" ng-repeat="n in [].constructor(mainCtrl.totalPages) track by $index" ng-class="{active: mainCtrl.currentPage === ($index + 1)}">
+                        <a class="page-link" href="#" ng-click="mainCtrl.setPage($index + 1)">{{$index + 1}}</a>
+                    </li>
+                    <li class="page-item" ng-class="{disabled: mainCtrl.currentPage === mainCtrl.totalPages}">
+                        <a class="page-link" href="#" ng-click="mainCtrl.setPage(mainCtrl.currentPage + 1)">Next</a>
+                    </li>
+                </ul>
+            </div>
+        </section>        
         <section id="pay" class="mt-5 pt-4" ng-show="mainCtrl.visibleSection === 'pay'">
             <h1>{{ 'makePaymentTitle' | translate }}</h1>
             <form ng-submit="mainCtrl.makePayment()">

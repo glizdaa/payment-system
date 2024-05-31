@@ -10,7 +10,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    transition: background-color 0.5s, color 0.5s;
+    transition: background-color 0.4s, color 0.4s;
 }
 
 nav {
@@ -81,6 +81,47 @@ body.light-mode {
     color: black;
 }
 
+body.light-mode .pagination-container {
+    background-color: white;
+    color: black;
+}
+
+body.light-mode .pagination-container .pagination .page-link {
+    background-color: white;
+    color: black;
+    border-color: #ccc;
+}
+
+body.light-mode .pagination-container .pagination .page-item.active .page-link {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+body.light-mode .pagination-container .pagination .page-link:hover {
+    background-color: #e9ecef;
+    color: #007bff;
+}
+
+/* Style dla paginacji */
+.pagination .page-link {
+    background-color: inherit;
+    color: inherit;
+    border: 1px solid #ccc;
+    transition: background-color 0.4s, color 0.4s;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.pagination .page-link:hover {
+    background-color: #e9ecef;
+    color: #007bff;
+}
+
 /* Style dla ciemnego motywu */
 body.dark-mode {
     background-color: #121212;
@@ -110,6 +151,28 @@ body.dark-mode .btn-primary {
 body.dark-mode .btn-primary:hover {
     background-color: #666;
     border-color: #666;
+}
+
+body.dark-mode .pagination-container {
+    background-color: #121212;
+    color: white;
+}
+
+body.dark-mode .pagination-container .pagination .page-link {
+    background-color: #333;
+    color: white;
+    border-color: #555;
+}
+
+body.dark-mode .pagination-container .pagination .page-item.active .page-link {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+body.dark-mode .pagination-container .pagination .page-link:hover {
+    background-color: #555;
+    color: #007bff;
 }
 
 /* Styl dla slidera */

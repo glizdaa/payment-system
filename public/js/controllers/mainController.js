@@ -25,6 +25,20 @@ angular.module('paymentApp')
     loadCurrentBills();
 
     vm.paymentHistory = [];
+    vm.currentPage = 1;
+    vm.itemsPerPage = 6;
+
+    vm.setPage = function(page) {
+        if (page > 0 && page <= vm.totalPages) {
+            vm.currentPage = page;
+        }
+    };
+    
+    vm.paginatedPaymentHistory = function() {
+        var start = (vm.currentPage - 1) * vm.itemsPerPage;
+        var end = start + vm.itemsPerPage;
+        return vm.paymentHistory.slice(start, end);
+    };    
 
     function loadPaymentHistory() {
         PaymentService.getPayments().then(function(response) {
@@ -32,14 +46,15 @@ angular.module('paymentApp')
                 vm.paymentHistory = response.data.map(function(payment) {
                     payment.date = new Date(payment.payment_date);
                     return payment;
-                });
+                }).reverse(); // Odwrócenie kolejności elementów w tablicy
+                vm.totalPages = Math.ceil(vm.paymentHistory.length / vm.itemsPerPage);
             } else {
                 console.error('Unexpected data format for payments:', response.data);
             }
         }).catch(function(error) {
             console.error('Error loading payment history:', error);
         });
-    }
+    }    
 
     loadPaymentHistory();
 
