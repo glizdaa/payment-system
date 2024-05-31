@@ -8,7 +8,12 @@ angular.module('paymentApp')
     function loadCurrentBills() {
         PaymentService.getBills().then(function(response) {
             if (Array.isArray(response.data)) {
-                vm.currentBills = response.data;
+                vm.currentBills = response.data.map(function(bill) {
+                    return {
+                        ...bill,
+                        title: $translate.instant(bill.title) // Tłumaczenie tytułu rachunku
+                    };
+                });
             } else {
                 console.error('Unexpected data format for bills:', response.data);
             }

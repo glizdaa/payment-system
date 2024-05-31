@@ -7,11 +7,18 @@
     "makePaymentTitle": "Dokonaj Płatności",
     "paymentAmount": "Kwota Płatności",
     "pay": "Zapłać",
-    "currency": "PLN",
     "footerText": "Wszelkie prawa zastrzeżone.",
-    "systemName": "System Płatności",
     "paymentSuccess": "Płatność zakończona sukcesem!",
+    "systemName": "System Płatności",
     "electricBill": "Rachunek za prąd",
     "internetBill": "Rachunek za internet",
-    "cookieConsentText": "Ta strona używa plików cookie, aby zapewnić najlepsze wrażenia na naszej stronie."
+    "cookieConsentText": "Ta strona używa plików cookie, aby zapewnić najlepsze wrażenia na naszej stronie.",
+    "Please select a bill to pay": "Proszę wybrać rachunek do zapłaty",
+    "Invalid payment amount. Please enter a valid amount.": "Nieprawidłowa kwota płatności. Proszę wprowadzić poprawną kwotę.",
+    "selectBill": "Wybierz rachunek",
+    "Water Bill": "Rachunek za wodę",
+    "Internet Bill": "Rachunek za internet",
+    "Rent": "Rachunek za wynajem",
+    "Electric Bill": "Rachunek za prąd",
+    "Gas Bill": "Rachunek za paliwo"
 }

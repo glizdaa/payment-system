@@ -7,11 +7,18 @@
     "makePaymentTitle": "Make a Payment",
     "paymentAmount": "Payment Amount",
     "pay": "Pay",
-    "currency": "USD",
     "footerText": "All rights reserved.",
-    "systemName": "Payment System",
     "paymentSuccess": "Payment successful!",
+    "systemName": "Transaction System",
     "electricBill": "Electric Bill",
     "internetBill": "Internet Bill",
-    "cookieConsentText": "This website uses cookies to ensure you get the best experience on our website."
+    "cookieConsentText": "This website uses cookies to ensure you get the best experience on our website.",
+    "Please select a bill to pay": "Please select a bill to pay",
+    "Invalid payment amount. Please enter a valid amount.": "Invalid payment amount. Please enter a valid amount.",
+    "selectBill": "Choose bill",
+    "Water Bill": "Water Bill",
+    "Internet Bill": "Internet Bill",
+    "Rent": "Rent",
+    "Electric Bill": "Electric Bill",
+    "Gas Bill": "Gas Bill"
 }
