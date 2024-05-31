@@ -1,5 +1,7 @@
+// app.js
 angular.module('paymentApp', ['pascalprecht.translate'])
 .config(function($translateProvider, $translateSanitizationProvider) {
+    // Using DOMPurify from global scope
     $translateProvider.useStaticFilesLoader({
         prefix: '../lang/',
         suffix: '.json'
@@ -7,9 +9,9 @@ angular.module('paymentApp', ['pascalprecht.translate'])
 
     $translateProvider.preferredLanguage('pl');
 
-    // Konfiguracja sanitizacji
+    // Configure sanitization with DOMPurify
     $translateSanitizationProvider.addStrategy('sanitize', function(value) {
-        return value; // Dodaj odpowiednią logikę sanitizacji
+        return DOMPurify.sanitize(value); // Sanitize value using DOMPurify
     });
     $translateSanitizationProvider.useStrategy('sanitize');
 });
