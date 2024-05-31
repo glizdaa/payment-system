@@ -26,11 +26,11 @@ app.get('/', (req, res) => {
 // Pobieranie nieopłaconych rachunków
 app.get('/api/bills', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM bills WHERE is_paid = FALSE');
-    res.json(result.rows);
-  } catch (err) {
-    console.error('Error getting bills:', err); // Logowanie błędu
-    res.status(500).json({ error: 'Internal server error' });
+      const result = await pool.query('SELECT id, title, amount, due_date FROM public.bills');
+      res.json(result.rows);
+  } catch (error) {
+      console.error('Error getting bills:', error);
+      res.status(500).json({ error: 'Internal server error' });
   }
 });
 

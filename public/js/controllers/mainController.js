@@ -2,18 +2,24 @@ angular.module('paymentApp')
 .controller('MainController', function($translate, PaymentService, PaymentModel, $scope) {
     var vm = this;
 
-    vm.isLightTheme = true; // Domyślnie jasny motyw
-    vm.theme = 'light-mode'; // Ustawienie klasy dla jasnego motywu
+    vm.isLightTheme = true; // Default light theme
+    vm.theme = 'light-mode'; // Setting class for light theme
 
     function loadCurrentBills() {
         PaymentService.getBills().then(function(response) {
             if (Array.isArray(response.data)) {
-                vm.currentBills = response.data.map(function(bill) {
-                    return {
-                        ...bill,
-                        title: $translate.instant(bill.title) // Tłumaczenie tytułu rachunku
-                    };
-                });
+                vm.currentBills = response.data
+                    .filter(function(bill) {
+                        return bill.amount > 0; // Filter out bills with amount 0
+                    })
+                    .map(function(bill) {
+                        return {
+                            ...bill,
+                            title: $translate.instant(bill.title), // Translate bill title
+                            due_date: new Date(bill.due_date) // Convert due_date to Date object
+                        };
+                    });
+                vm.totalBillPages = Math.ceil(vm.currentBills.length / vm.billsPerPage);
             } else {
                 console.error('Unexpected data format for bills:', response.data);
             }
@@ -46,7 +52,7 @@ angular.module('paymentApp')
                 vm.paymentHistory = response.data.map(function(payment) {
                     payment.date = new Date(payment.payment_date);
                     return payment;
-                }).reverse(); // Odwrócenie kolejności elementów w tablicy
+                }).reverse(); // Reverse order of array elements
                 vm.totalPages = Math.ceil(vm.paymentHistory.length / vm.itemsPerPage);
             } else {
                 console.error('Unexpected data format for payments:', response.data);
@@ -87,10 +93,12 @@ angular.module('paymentApp')
     };
 
     vm.selectBillForPayment = function(bill) {
+        if (bill.amount <= 0) {
+            alert($translate.instant('Cannot pay a bill with zero or negative amount.'));
+            return;
+        }
         vm.payment.bill_id = bill.id;
         vm.payment.amount = parseFloat(bill.amount); // Ensure amount is a number
-        console.log("Selected Bill ID:", vm.payment.bill_id);
-        console.log("Selected Bill Amount:", vm.payment.amount);
         vm.showSection('pay');
     };
 
@@ -114,9 +122,34 @@ angular.module('paymentApp')
         vm.toggleTheme();
     });
 
-    vm.visibleSection = 'current'; // Domyślnie widoczna sekcja
+    vm.visibleSection = 'current'; // Default visible section
 
     vm.showSection = function(section) {
         vm.visibleSection = section;
+    };
+
+    // Pagination for current bills
+    vm.billsPerPage = 4;
+    vm.currentBillPage = 1;
+
+    vm.setBillPage = function(page) {
+        if (page > 0 && page <= vm.totalBillPages) {
+            vm.currentBillPage = page;
+        }
+    };
+
+    vm.paginatedCurrentBills = function() {
+        if (!vm.currentBills) {
+            return []; // Return an empty array if currentBills is undefined
+        }
+        var start = (vm.currentBillPage - 1) * vm.billsPerPage;
+        var end = start + vm.billsPerPage;
+        return vm.currentBills.slice(start, end);
+    };
+
+    vm.isDueDatePast = function(due_date) {
+        var now = new Date();
+        var dueDate = new Date(due_date);
+        return dueDate < now;
     };
 });

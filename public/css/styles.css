@@ -75,6 +75,22 @@ footer {
     align-items: center;
 }
 
+/* Custom styles for current bills */
+.card-text {
+    margin: 0.5em 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.due-date {
+    margin-left: 2em;
+    color: #888;
+}
+
+.due-date-past {
+    color: red;
+}
+
 /* Style dla jasnego motywu */
 body.light-mode {
     background-color: white;
