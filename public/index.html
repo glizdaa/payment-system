@@ -28,13 +28,16 @@
     <div ng-controller="MainController as mainCtrl" class="container">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <a class="navbar-brand" href="#">{{ 'paymentSystem' | translate }}</a>
-            <div class="collapse navbar-collapse">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item"><a class="nav-link" href="" ng-click="mainCtrl.showSection('current')">{{ 'currentBills' | translate }}</a></li>
                     <li class="nav-item"><a class="nav-link" href="" ng-click="mainCtrl.showSection('history')">{{ 'paymentHistory' | translate }}</a></li>
                     <li class="nav-item"><a class="nav-link" href="" ng-click="mainCtrl.showSection('pay')">{{ 'makePayment' | translate }}</a></li>
                 </ul>
-                <ul class="navbar-nav flag-container">
+                <ul class="navbar-nav ml-auto flag-container">
                     <li class="nav-item">
                         <img src="images/pl_flag.png" alt="Polski" class="flag pl_flag nav-link" ng-click="mainCtrl.changeLanguage('pl')">
                     </li>

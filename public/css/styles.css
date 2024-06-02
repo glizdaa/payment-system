@@ -2,7 +2,7 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 2000; /* Ensure the cookie banner is above everything else */
     text-align: center;
 }
 
@@ -49,6 +49,7 @@ footer {
     position: fixed;
     width: 100%;
     bottom: 0;
+    z-index: 1000; /* Ensures footer is above other content but below cookie banner */
 }
 
 .flag {
@@ -56,6 +57,7 @@ footer {
     height: 16px;
     cursor: pointer;
     background-size: cover;
+    margin: 0 0.25em; /* Default margin for desktop view */
 }
 
 .flag:hover {
@@ -73,6 +75,8 @@ footer {
 .flag-container {
     display: flex;
     align-items: center;
+    justify-content: center; /* Center the flags */
+    margin-top: 1em;
 }
 
 /* Custom styles for current bills */
@@ -181,14 +185,14 @@ body.dark-mode .pagination-container .pagination .page-link {
 }
 
 body.dark-mode .pagination-container .pagination .page-item.active .page-link {
-    background-color: #007bff;
+    background-color: #555;
     color: white;
-    border-color: #007bff;
+    border-color: #555;
 }
 
 body.dark-mode .pagination-container .pagination .page-link:hover {
     background-color: #555;
-    color: #007bff;
+    color: #666;
 }
 
 /* Styl dla slidera */
@@ -249,7 +253,63 @@ input:checked + .slider .moon {
     transform: translateX(0); /* Przesunięcie do widoku */
 }
 
-/* Styl dla kompensacji wysokości nagłówka */
-body {
-    scroll-padding-top: 56px; /* Wysokość nagłówka */
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column; /* Stack menu items vertically */
+        align-items: center; /* Center menu items */
+    }
+    nav ul li {
+        margin: 0.5em 0; /* Add margin between menu items */
+    }
+    .flag-container {
+        flex-direction: row; /* Ensure flags are in a row on mobile */
+        justify-content: center;
+    }
+    .flag {
+        margin: 0 0.5em; /* Add more space between flags in mobile view */
+    }
+    .switch {
+        margin: 0 0.5em; /* Add more space around the switch in mobile view */
+    }
+    section {
+        padding: 1em; /* Reduce padding for better fit on mobile */
+    }
+    .pagination-container {
+        position: relative;
+        z-index: 2; /* Ensure the pagination is above the footer */
+    }
+}
+
+/* Media query for tablet devices */
+@media (min-width: 769px) and (max-width: 1024px) {
+    nav ul {
+        flex-direction: column; /* Stack menu items vertically for tablets */
+        align-items: center; /* Center menu items */
+    }
+    nav ul li {
+        margin: 0.5em 0; /* Add margin between menu items for tablets */
+    }
+    .flag-container {
+        flex-direction: row; /* Ensure flags are in a row on tablets */
+        justify-content: center;
+    }
+    .flag {
+        margin: 0 1.5em; /* Increase space between flags for tablet view */
+    }
+    .switch {
+        margin: 0 1.5em; /* Increase space around the switch for tablet view */
+    }
+    section {
+        padding: 1.5em; /* Adjust padding for better fit on tablets */
+    }
+    .pagination-container {
+        position: relative;
+        z-index: 2; /* Ensure the pagination is above the footer */
+    }
+}
+
+/* Move the heading from the navbar */
+h1.ng-binding {
+    margin-top: 0.5em; /* Adjust the margin to move it down from the navbar */
 }
