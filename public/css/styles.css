@@ -251,6 +251,10 @@ input:checked + .slider .moon {
     transform: translateX(0); /* Przesunięcie do widoku */
 }
 
+footer {
+    position: relative;
+}
+
 /* Media query for mobile devices */
 @media (max-width: 768px) {
     nav ul {
@@ -276,6 +280,9 @@ input:checked + .slider .moon {
     .pagination-container {
         position: relative;
         z-index: 2; /* Ensure the pagination is above the footer */
+    }
+    footer {
+        position: relative;
     }
 }
 
@@ -304,6 +311,15 @@ input:checked + .slider .moon {
     .pagination-container {
         position: relative;
         z-index: 2; /* Ensure the pagination is above the footer */
+    }
+    footer {
+        position: relative;
+    }
+}
+
+@media (min-height: 939px) {
+    card-body {
+        max-height: 9.36em;
     }
 }
 
