@@ -50,6 +50,7 @@ nav ul li a {
 
 section {
     min-height: 58.21rem;
+    max-height: 58.21rem;
     padding: 2em;
 }
 
@@ -270,6 +271,11 @@ input:checked + .slider .sun {
 input:checked + .slider .moon {
     opacity: 1; /* Pokaż księżyc */
     transform: translateX(0); /* Przesunięcie do widoku */
+}
+
+h2.card-title .small-id {
+    font-size: 0.5em; /* Rozmiar czcionki mniejszy niż normalny */
+    font-weight: normal;
 }
 
 /* Media query for mobile devices */

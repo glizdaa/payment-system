@@ -60,7 +60,7 @@
             <h1>{{ 'currentBillsTitle' | translate }}</h1>
             <div ng-repeat="bill in mainCtrl.paginatedCurrentBills() track by bill.id" class="card mt-2">
                 <div class="card-body">
-                    <h2 class="card-title">{{ bill.title }}</h2>
+                    <h2 class="card-title">{{ bill.title }} <span class="small-id">({{ 'bill_ID' | translate }}: {{ bill.id }})</span></h2>
                     <p class="card-text">
                         <span>{{ bill.amount }} USD</span>
                         <span ng-class="{'due-date-past': mainCtrl.isDueDatePast(bill.due_date)}" class="due-date">
@@ -115,7 +115,7 @@
                 </div>
                 <div class="form-group">
                     <label for="paymentAmount">{{ 'paymentAmount' | translate }}</label>
-                    <input type="number" id="paymentAmount" name="paymentAmount" ng-model="mainCtrl.payment.amount" class="form-control" required>
+                    <input type="number" id="paymentAmount" name="paymentAmount" ng-model="mainCtrl.payment.amount" class="form-control" step="0.01" required>
                 </div>
                 <button type="submit" class="btn btn-primary">{{ 'pay' | translate }}</button>
             </form>

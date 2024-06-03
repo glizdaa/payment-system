@@ -4,6 +4,7 @@ angular.module('paymentApp')
 
     vm.isLightTheme = true; // Default light theme
     vm.theme = 'light-mode'; // Setting class for light theme
+    vm.currentBills = vm.currentBills || [];
 
     function loadCurrentBills() {
         PaymentService.getBills().then(function(response) {
@@ -138,13 +139,29 @@ angular.module('paymentApp')
         }
     };
 
+    vm.sortBills = function(bills) {
+        return bills.sort(function(a, b) {
+            if (a.due_date < b.due_date) {
+                return -1;
+            }
+            if (a.due_date > b.due_date) {
+                return 1;
+            }
+            if (a.id < b.id) {
+                return -1;
+            }
+            if (a.id > b.id) {
+                return 1;
+            }
+            return 0;
+        });
+    };
+
     vm.paginatedCurrentBills = function() {
-        if (!vm.currentBills) {
-            return []; // Return an empty array if currentBills is undefined
-        }
+        var sortedBills = vm.sortBills(vm.currentBills);
         var start = (vm.currentBillPage - 1) * vm.billsPerPage;
         var end = start + vm.billsPerPage;
-        return vm.currentBills.slice(start, end);
+        return sortedBills.slice(start, end);
     };
 
     vm.isDueDatePast = function(due_date) {
