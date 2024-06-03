@@ -15,6 +15,11 @@ const pool = new Pool({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use((req, res, next) => {
+  res.removeHeader("Permissions-Policy");
+  next();
+});
+
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
