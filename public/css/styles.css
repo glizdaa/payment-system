@@ -2,7 +2,7 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    z-index: 2000; /* Ensure the cookie banner is above everything else */
+    z-index: 2000;
     text-align: center;
 }
 
@@ -62,7 +62,7 @@ footer {
     position: relative;
     width: 100%;
     bottom: 0;
-    z-index: 1000; /* Ensures footer is above other content but below cookie banner */
+    z-index: 1000;
 }
 
 .flag {
@@ -87,10 +87,10 @@ footer {
 .flag-container {
     display: flex;
     align-items: center;
-    justify-content: center; /* Center the flags */
+    justify-content: center;
 }
 
-/* Custom styles for current bills */
+/* CurrentBills cards */
 .card-text {
     margin: 0.5em 0;
     display: flex;
@@ -106,7 +106,6 @@ footer {
     color: red;
 }
 
-/* Pogrubienie kwoty i terminu płatności */
 span.ng-binding {
     font-weight: bold;
 }
@@ -115,7 +114,6 @@ span.ng-binding {
     font-weight: bold;
 }
 
-/* Style dla jasnego motywu */
 body.light-mode {
     background-color: white;
     color: black;
@@ -143,7 +141,7 @@ body.light-mode .pagination-container .pagination .page-link:hover {
     color: #007bff;
 }
 
-/* Style dla paginacji */
+/* Pagination */
 .pagination .page-link {
     background-color: inherit;
     color: inherit;
@@ -162,7 +160,7 @@ body.light-mode .pagination-container .pagination .page-link:hover {
     color: #007bff;
 }
 
-/* Style dla ciemnego motywu */
+/* Dark-mode */
 body.dark-mode {
     background-color: #121212;
     color: white;
@@ -215,7 +213,7 @@ body.dark-mode .pagination-container .pagination .page-link:hover {
     color: #666;
 }
 
-/* Styl dla slidera */
+/* Slider */
 .switch {
     position: relative;
     display: inline-block;
@@ -254,55 +252,55 @@ body.dark-mode .pagination-container .pagination .page-link:hover {
 }
 
 .sun {
-    background-color: rgb(255, 226, 62); /* Słońce dla jasnego motywu */
+    background-color: rgb(255, 226, 62);
 }
 
 .moon {
-    background-color: #c4c4c4; /* Jaśniejszy księżyc */
-    opacity: 0; /* Domyślnie ukryty */
-    transform: translateX(-30px); /* Przesunięcie poza widok */
+    background-color: #c4c4c4;
+    opacity: 0;
+    transform: translateX(-30px);
 }
 
 input:checked + .slider .sun {
-    opacity: 0; /* Ukryj słońce */
-    transform: translateX(30px); /* Przesunięcie poza widok */
+    opacity: 0;
+    transform: translateX(30px);
 }
 
 input:checked + .slider .moon {
-    opacity: 1; /* Pokaż księżyc */
-    transform: translateX(0); /* Przesunięcie do widoku */
+    opacity: 1;
+    transform: translateX(0);
 }
 
 h2.card-title .small-id {
-    font-size: 0.5em; /* Rozmiar czcionki mniejszy niż normalny */
+    font-size: 0.5em;
     font-weight: normal;
 }
 
 /* Media query for mobile devices */
 @media (max-width: 768px) {
     nav ul {
-        flex-direction: column; /* Stack menu items vertically */
-        align-items: center; /* Center menu items */
+        flex-direction: column;
+        align-items: center;
     }
     nav ul li {
-        margin: 0.5em 0; /* Add margin between menu items */
+        margin: 0.5em 0;
     }
     .flag-container {
-        flex-direction: row; /* Ensure flags are in a row on mobile */
+        flex-direction: row;
         justify-content: center;
     }
     .flag {
-        margin: 0 0.5em; /* Add more space between flags in mobile view */
+        margin: 0 0.5em;
     }
     .switch {
-        margin: 0 0.5em; /* Add more space around the switch in mobile view */
+        margin: 0 0.5em;
     }
     section {
-        padding: 1em; /* Reduce padding for better fit on mobile */
+        padding: 1em;
     }
     .pagination-container {
         position: relative;
-        z-index: 2; /* Ensure the pagination is above the footer */
+        z-index: 2;
     }
     footer {
         position: relative;
@@ -312,28 +310,28 @@ h2.card-title .small-id {
 /* Media query for tablet devices */
 @media (min-width: 769px) and (max-width: 1024px) {
     nav ul {
-        flex-direction: column; /* Stack menu items vertically for tablets */
-        align-items: center; /* Center menu items */
+        flex-direction: column;
+        align-items: center;
     }
     nav ul li {
-        margin: 0.5em 0; /* Add margin between menu items for tablets */
+        margin: 0.5em 0;
     }
     .flag-container {
-        flex-direction: row; /* Ensure flags are in a row on tablets */
+        flex-direction: row;
         justify-content: center;
     }
     .flag {
-        margin: 0 1.5em; /* Increase space between flags for tablet view */
+        margin: 0 1.5em;
     }
     .switch {
-        margin: 0 1.5em; /* Increase space around the switch for tablet view */
+        margin: 0 1.5em;
     }
     section {
-        padding: 1.5em; /* Adjust padding for better fit on tablets */
+        padding: 1.5em;
     }
     .pagination-container {
         position: relative;
-        z-index: 2; /* Ensure the pagination is above the footer */
+        z-index: 2;
     }
     footer {
         position: relative;
@@ -348,5 +346,5 @@ h2.card-title .small-id {
 
 /* Move the heading from the navbar */
 h1.ng-binding {
-    margin-top: 0.5em; /* Adjust the margin to move it down from the navbar */
+    margin-top: 0.5em;
 }

@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Pobieranie nieopłaconych rachunków
+// Get bills
 app.get('/api/bills', async (req, res) => {
   try {
       const result = await pool.query('SELECT id, title, amount, due_date FROM public.bills');
@@ -34,7 +34,7 @@ app.get('/api/bills', async (req, res) => {
   }
 });
 
-// Dodawanie płatności
+// Post payment
 app.post('/api/payments', async (req, res) => {
   const { amount, bill_id } = req.body;
 
@@ -59,18 +59,18 @@ app.post('/api/payments', async (req, res) => {
 
     res.json({ success: true, message: 'Payment processed successfully' });
   } catch (err) {
-    console.error('Error processing payment:', err); // Logowanie błędu
+    console.error('Error processing payment:', err);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
 
-// Pobieranie historii płatności
+// Get payment history
 app.get('/api/payments', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM payments');
     res.json(result.rows);
   } catch (err) {
-    console.error('Error getting payments:', err); // Logowanie błędu
+    console.error('Error getting payments:', err);
     res.status(500).json({ error: 'Internal server error' });
   }
 });

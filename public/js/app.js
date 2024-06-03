@@ -7,9 +7,9 @@ angular.module('paymentApp', ['pascalprecht.translate'])
 
     $translateProvider.preferredLanguage('pl');
 
-    // Konfiguracja sanitizacji
+    // Konfiguracja sanitizacji (w przyszlosci)
     $translateSanitizationProvider.addStrategy('sanitize', function(value) {
-        return value; // Dodaj odpowiednią logikę sanitizacji
+        return value;
     });
     $translateSanitizationProvider.useStrategy('sanitize');
 });
