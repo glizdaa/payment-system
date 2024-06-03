@@ -140,20 +140,17 @@ angular.module('paymentApp')
     };
 
     vm.sortBills = function(bills) {
+        if (!bills) return [];
         return bills.sort(function(a, b) {
-            if (a.due_date < b.due_date) {
+            var dateA = new Date(a.due_date);
+            var dateB = new Date(b.due_date);
+            if (dateA < dateB) {
                 return -1;
             }
-            if (a.due_date > b.due_date) {
+            if (dateA > dateB) {
                 return 1;
             }
-            if (a.id < b.id) {
-                return -1;
-            }
-            if (a.id > b.id) {
-                return 1;
-            }
-            return 0;
+            return a.id - b.id;
         });
     };
 
