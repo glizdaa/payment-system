@@ -6,6 +6,17 @@
     text-align: center;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -38,6 +49,7 @@ nav ul li a {
 }
 
 section {
+    min-height: 58.21rem;
     padding: 2em;
 }
 
@@ -46,7 +58,7 @@ footer {
     color: white;
     text-align: center;
     padding: 1em;
-    position: fixed;
+    position: relative;
     width: 100%;
     bottom: 0;
     z-index: 1000; /* Ensures footer is above other content but below cookie banner */
@@ -91,6 +103,15 @@ footer {
 
 .due-date-past {
     color: red;
+}
+
+/* Pogrubienie kwoty i terminu płatności */
+span.ng-binding {
+    font-weight: bold;
+}
+
+.due-date span.ng-binding {
+    font-weight: bold;
 }
 
 /* Style dla jasnego motywu */
@@ -249,10 +270,6 @@ input:checked + .slider .sun {
 input:checked + .slider .moon {
     opacity: 1; /* Pokaż księżyc */
     transform: translateX(0); /* Przesunięcie do widoku */
-}
-
-footer {
-    position: relative;
 }
 
 /* Media query for mobile devices */
