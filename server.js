@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
-  res.removeHeader("Permissions-Policy");
+  res.setHeader("Permissions-Policy", "");
   next();
 });
 
