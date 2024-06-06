@@ -27,7 +27,7 @@
     </div>
     <div ng-controller="MainController as mainCtrl" class="container">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-            <a class="navbar-brand" href="#">{{ 'paymentSystem' | translate }}</a>
+            <a class="navbar-brand ng-binding" href="#" ng-click="mainCtrl.reloadPage()">{{ 'paymentSystem' | translate }}</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -57,12 +57,12 @@
             </div>
         </nav>
         <section id="current" class="mt-5 pt-4" ng-show="mainCtrl.visibleSection === 'current'">
-            <h1>{{ 'currentBillsTitle' | translate }}</h1>
+            <h1>{{ 'currentBillsTitle' | translate }}<span ng-if="mainCtrl.totalBillAmount !== undefined"> - {{ 'Total' | translate }}: {{ mainCtrl.totalBillAmount.toFixed(2) }} USD</span></h1>
             <div ng-repeat="bill in mainCtrl.paginatedCurrentBills() track by bill.id" class="card mt-2">
                 <div class="card-body">
                     <h2 class="card-title">{{ bill.title }} <span class="small-id">({{ 'bill_ID' | translate }}: {{ bill.id }})</span></h2>
                     <p class="card-text">
-                        <span>{{ bill.amount }} USD</span>
+                        <span>{{ bill.amount.toFixed(2) }} USD</span>
                         <span ng-class="{'due-date-past': mainCtrl.isDueDatePast(bill.due_date)}" class="due-date">
                             {{ 'Due Date' | translate }}: <span ng-bind="bill.due_date | translateDate"></span>
                         </span>
@@ -83,7 +83,7 @@
                     </li>
                 </ul>
             </div>
-        </section>
+        </section>              
         <section id="history" class="mt-5 pt-4" ng-show="mainCtrl.visibleSection === 'history'">
             <h1>{{ 'paymentHistoryTitle' | translate }}</h1>
             <div ng-repeat="payment in mainCtrl.paginatedPaymentHistory() track by payment.id" class="card mt-2">

@@ -17,18 +17,28 @@ angular.module('paymentApp')
                         return {
                             ...bill,
                             title: $translate.instant(bill.title), // Translate bill title
-                            due_date: new Date(bill.due_date) // Convert due_date to Date object
+                            due_date: new Date(bill.due_date), // Convert due_date to Date object
+                            amount: parseFloat(bill.amount) // Ensure amount is treated as a number
                         };
                     });
                 vm.totalBillPages = Math.ceil(vm.currentBills.length / vm.billsPerPage);
+                
+                // Calculate the total amount of current bills
+                vm.totalBillAmount = vm.currentBills.reduce(function(total, bill) {
+                    return total + bill.amount;
+                }, 0);
+                
+                console.log('Total Bill Amount:', vm.totalBillAmount); // Debugging line to check the value
+                console.log('Current Bills:', vm.currentBills); // Debugging line to check the value of current bills
             } else {
                 console.error('Unexpected data format for bills:', response.data);
             }
         }).catch(function(error) {
             console.error('Error loading current bills:', error);
         });
-    }
+    }    
 
+    vm.reloadPage = reloadPage;
     loadCurrentBills();
 
     vm.paymentHistory = [];
@@ -166,4 +176,8 @@ angular.module('paymentApp')
         var dueDate = new Date(due_date);
         return dueDate < now;
     };
+
+    function reloadPage() {
+        window.location.reload();
+    }
 });
